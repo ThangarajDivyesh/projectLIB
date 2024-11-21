@@ -1,0 +1,19 @@
+{
+  "Version": 1,
+  "Hash": "S74SFUXWSEon1sXGeUn4Czz4bjPyf1wG9GhX00oIbig=",
+  "Source": "milestone3library",
+  "BasePath": "_content/milestone3library",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "milestone3library\\wwwroot",
+      "Source": "milestone3library",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\mile3\\back\\milestone3library\\milestone3library\\wwwroot\\",
+      "BasePath": "_content/milestone3library",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": []
+}

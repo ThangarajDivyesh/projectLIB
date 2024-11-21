@@ -1,0 +1,6 @@
+@milestone3library_HostAddress = http://localhost:5020
+
+GET {{milestone3library_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
