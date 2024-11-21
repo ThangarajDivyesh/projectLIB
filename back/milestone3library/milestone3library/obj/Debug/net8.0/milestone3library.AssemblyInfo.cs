@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("milestone3library")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7c73b19a4491f2eaf289c99b107a0f2344479d51")]
 [assembly: System.Reflection.AssemblyProductAttribute("milestone3library")]
 [assembly: System.Reflection.AssemblyTitleAttribute("milestone3library")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
