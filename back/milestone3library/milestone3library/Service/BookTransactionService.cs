@@ -1,4 +1,6 @@
 ﻿// TransactionService
+using Microsoft.EntityFrameworkCore;
+using milestone3library.Data;
 using milestone3library.Dto;
 using milestone3library.Entity;
 using milestone3library.Interface;
@@ -14,15 +16,19 @@ namespace milestone3library.Service
         private readonly IBookTransactionRepository _bookTransactionRepository;
         private readonly IBookRepository _bookRepository;
         private readonly IMemberRepository _memberRepository;
+        private readonly libraryDbcontext _context;
+        
 
         public BookTransactionService(
             IBookTransactionRepository bookTransactionRepository,
             IBookRepository bookRepository,
-            IMemberRepository memberRepository)
+            IMemberRepository memberRepository,
+            libraryDbcontext libraryDbcontext)
         {
             _bookTransactionRepository = bookTransactionRepository;
             _bookRepository = bookRepository;
             _memberRepository = memberRepository;
+            _context = libraryDbcontext;
         }
 
 
@@ -188,6 +194,20 @@ namespace milestone3library.Service
         }
 
 
+        public async Task<IEnumerable<BookTransactionDTO>> GetTransactionsByMemberIdAsync(int memberId)
+        {
+            return await _context.BookTransactions
+                .Where(bt => bt.MemberId == memberId)
+                .Select(bt => new BookTransactionDTO
+                {
+                    Id = bt.Id,
+                    BookTitle = bt.Book.Title,
+                    RentDate = bt.RentDate,
+                    ReturnDate = bt.ReturnDate,
+                    MemberId = bt.MemberId
+                })
+                .ToListAsync();
+        }
 
 
 

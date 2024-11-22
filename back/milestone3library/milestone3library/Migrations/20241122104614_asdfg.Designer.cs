@@ -12,8 +12,8 @@ using milestone3library.Data;
 namespace milestone3library.Migrations
 {
     [DbContext(typeof(libraryDbcontext))]
-    [Migration("20241120091824_sfsfsfs")]
-    partial class sfsfsfs
+    [Migration("20241122104614_asdfg")]
+    partial class asdfg
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -89,6 +89,62 @@ namespace milestone3library.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("milestone3library.Entity.BookRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsProcessed")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("BookRequests");
+                });
+
+            modelBuilder.Entity("milestone3library.Entity.BookResponse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RequestId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ResponseDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResponseMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BookResponses");
+                });
+
             modelBuilder.Entity("milestone3library.Entity.BookTransaction", b =>
                 {
                     b.Property<int>("Id")
@@ -103,11 +159,20 @@ namespace milestone3library.Migrations
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<decimal?>("FineAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("FinePaid")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("RentDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
@@ -150,6 +215,9 @@ namespace milestone3library.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsRestricted")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -170,6 +238,31 @@ namespace milestone3library.Migrations
                     b.ToTable("Members");
                 });
 
+            modelBuilder.Entity("milestone3library.Entity.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MemberId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NotificationMessage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.ToTable("Notifications");
+                });
+
             modelBuilder.Entity("milestone3library.Entity.Book", b =>
                 {
                     b.HasOne("milestone3library.Entity.Author", null)
@@ -179,6 +272,25 @@ namespace milestone3library.Migrations
                     b.HasOne("milestone3library.Entity.Genre", null)
                         .WithMany("Books")
                         .HasForeignKey("GenreId");
+                });
+
+            modelBuilder.Entity("milestone3library.Entity.BookRequest", b =>
+                {
+                    b.HasOne("milestone3library.Entity.Book", "book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("milestone3library.Entity.Member", "member")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("book");
+
+                    b.Navigation("member");
                 });
 
             modelBuilder.Entity("milestone3library.Entity.BookTransaction", b =>
@@ -198,6 +310,17 @@ namespace milestone3library.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("Member");
+                });
+
+            modelBuilder.Entity("milestone3library.Entity.Notification", b =>
+                {
+                    b.HasOne("milestone3library.Entity.Member", "member")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("member");
                 });
 
             modelBuilder.Entity("milestone3library.Entity.Author", b =>

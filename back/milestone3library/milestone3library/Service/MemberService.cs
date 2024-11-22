@@ -75,26 +75,6 @@ namespace milestone3library.Service
             return member; // Authentication successful
         }
 
-        //public async Task<Member> RegisterAsync(string email, string password)
-        //{
-
-        //    var existingMember = await _memberRepository.GetMemberByEmailAsync(email);
-        //    if (existingMember != null)
-        //    {
-        //        return null; 
-        //    }
-
-        //    var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-        //    var newMember = new Member
-        //    {
-        //        Email = email,
-        //        PasswordHash = hashedPassword
-        //    };
-
-
-
-        //    return newMember;
-        //}
 
 
 

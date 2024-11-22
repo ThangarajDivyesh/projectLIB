@@ -168,6 +168,9 @@ namespace milestone3library.Migrations
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("RentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("ReturnDate")
                         .HasColumnType("datetime2");
 

@@ -11,7 +11,8 @@ namespace milestone3library.Interface
         Task<BookResponseDto> AddBookAsync(BookRequestDto bookRequest);
         Task UpdateBookAsync(int id, BookRequestDto bookRequest);
         Task DeleteBookAsync(int id);
+       
         //Task<IEnumerable<BookResponseDto>> GetBooksAsync(int? genreId);
-      
+
     }
 }

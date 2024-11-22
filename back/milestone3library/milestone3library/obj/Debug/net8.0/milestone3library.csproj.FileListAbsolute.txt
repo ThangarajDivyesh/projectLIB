@@ -781,3 +781,4 @@ C:\Users\User\Desktop\mile3\back\milestone3library\milestone3library\obj\Debug\n
 C:\Users\User\Desktop\mile3\back\milestone3library\milestone3library\obj\Debug\net8.0\milestone3library.pdb
 C:\Users\User\Desktop\mile3\back\milestone3library\milestone3library\obj\Debug\net8.0\milestone3library.genruntimeconfig.cache
 C:\Users\User\Desktop\mile3\back\milestone3library\milestone3library\obj\Debug\net8.0\ref\milestone3library.dll
+C:\Users\User\Desktop\mile3\back\milestone3library\milestone3library\obj\Debug\net8.0\milestone3library.sourcelink.json

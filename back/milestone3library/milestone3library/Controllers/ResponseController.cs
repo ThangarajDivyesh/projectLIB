@@ -47,5 +47,21 @@ namespace milestone3library.Controllers
             return Ok(responses);
         }
 
+        [HttpGet("{memberId}")]
+        public IActionResult GetResponsesByMember(int memberId)
+        {
+            var notifications = _context.Notifications
+                .Where(n => n.MemberId == memberId)
+                .ToList();
+
+            if (!notifications.Any())
+            {
+                return NotFound("No notifications found for this member.");
+            }
+
+            return Ok(notifications);
+        }
+
+
     }
 }

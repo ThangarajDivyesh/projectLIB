@@ -68,6 +68,26 @@ namespace milestone3library.Controllers
         }
 
 
+        [HttpGet("transactions/member/{memberId}")]
+        public async Task<IActionResult> GetTransactionsByMember(int memberId)
+        {
+            try
+            {
+                var transactions = await _bookTransactionService.GetTransactionsByMemberIdAsync(memberId);
+                if (!transactions.Any())
+                {
+                    return NotFound("No transactions found for this member.");
+                }
+                return Ok(transactions);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
     }
 }
 

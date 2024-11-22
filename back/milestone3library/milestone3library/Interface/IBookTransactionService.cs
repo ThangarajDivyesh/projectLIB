@@ -8,6 +8,7 @@ namespace milestone3library.Interface
         Task<BookTransactionDTO> ReturnBookAsync(ReturnBookDTO returnBookDTO);
         Task<List<BookTransactionDTO>> GetAllTransactionsAsync();
         Task<BookTransactionDTO> GetTransactionByIdAsync(int id);
+        Task<IEnumerable<BookTransactionDTO>> GetTransactionsByMemberIdAsync(int memberId);
     }
 
 }
